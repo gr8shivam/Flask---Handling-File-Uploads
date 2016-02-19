@@ -1,0 +1,27 @@
+{% extends "main.html" %}
+{% block content %}
+    <br>
+    <p><b>List of files</b></p>
+    <table border="1" style="border-collapse:collapse" width="800"><tbody>
+    {% if user.fetch_files() %}
+        {% for file in user.fetch_files() %}
+          <tr><td width="400">{{ file }}</td><td> <form action="/delete/{{ file }}" method="post"> <input type="submit" name="remove" value="Remove"> </form> </td></tr>
+        {% endfor %}
+    {% else %}
+        <tr><td colspan="2">No uploaded file found.</td></tr>
+    {% endif %}
+    </tbody></table>
+    <br>
+    {% if responses %}
+        <p><b>Upload Results:-</b></p>
+        <ol>
+        {% for response in responses %}
+            {% if responses[response]==1 %}
+                <li>The file <strong>{{ response }}</strong> has been uploaded successfully.</li>
+            {% else %}
+                <li>The file <strong>{{ response }}</strong> couldn't be uploaded as this file extension is not allowed.</li>
+            {% endif %}
+        {% endfor %}
+        </ol>
+    {% endif %}
+{% endblock %}

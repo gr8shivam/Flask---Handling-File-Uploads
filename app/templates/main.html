@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Handling Flask File Uploads</title>
+  </head>
+  <body>
+    <div id="title">
+        <h2><a href="/">Handling Flask File Uploads</a></h2>
+    </div>
+    <hr>
+    <br>
+    <div id="content">
+        <strong>Upload Files</strong><br><br>
+        <form action="/home/" method=post enctype=multipart/form-data>
+          <input type="file" name="file[]" multiple>
+          <input type=submit value=Upload>
+        </form>
+        {% block content %}{% endblock %}
+    </div>
+  </body>
+</html>
